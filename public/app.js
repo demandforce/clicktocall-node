@@ -1,16 +1,16 @@
 // Execute JavaScript on page load
 $(function() {
-    // Initialize phone number text input plugin
-    // $('#customerNumber').intlTelInput({
-    //     responsiveDropdown: true,
-    //     autoFormat: true,
-    //     utilsScript: '/vendor/intl-phone/libphonenumber/build/utils.js'
-    // });
-    // $('#businessNumber').intlTelInput({
-    //     responsiveDropdown: true,
-    //     autoFormat: true,
-    //     utilsScript: '/vendor/intl-phone/libphonenumber/build/utils.js'
-    // });
+    Initialize phone number text input plugin
+    $('#customerNumber').intlTelInput({
+        responsiveDropdown: true,
+        autoFormat: true,
+        utilsScript: '/vendor/intl-phone/libphonenumber/build/utils.js'
+    });
+    $('#businessNumber').intlTelInput({
+        responsiveDropdown: true,
+        autoFormat: true,
+        utilsScript: '/vendor/intl-phone/libphonenumber/build/utils.js'
+    });
 
     // Intercept form submission and submit the form with ajax
     $('#contactForm').on('submit', function(e) {
