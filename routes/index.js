@@ -35,15 +35,18 @@ module.exports = function(app) {
         // This should be the publicly accessible URL for your application
         // Here, we just use the host for the application making the request,
         // but you can hard code it or use something different if need be
-        var url = 'https://afternoon-harbor-5614.herokuapp.com' + '/outbound';
-
+        var url = 'https://afternoon-harbor-5614.herokuapp.com' + '/outbound?';
+        var params = 'phone='+request.body.customerNumber+'&name='+request.body.customerName;
+        url = url + params;
         // Place an outbound call to the user, using the TwiML instructions
         // from the /outbound route
-        client.makeCall({
-            to: request.body.phoneNumber,
-            from: config.twilioNumber,
-            url: url
-        }, function(err, message) {
+        params = {
+            to: request.body.businessNumber,
+            from: request.body.businessNumber,
+            url: url,
+            method: "GET"
+        };
+        client.makeCall(params, function(err, message) {
             console.log(err);
             if (err) {
                 response.status(500).send(err);
@@ -56,10 +59,10 @@ module.exports = function(app) {
     });
 
     // Return TwiML instuctions for the outbound call
-    app.post('/outbound', function(request, response) {
+    app.get('/outbound', function(request, response) {
         // We could use twilio.TwimlResponse, but Jade works too - here's how
         // we would render a TwiML (XML) response using Jade
         response.type('text/xml');
-        response.render('outbound');
+        response.render('outbound', {name: request.query.name, phone: request.query.phone});
     });
 };
