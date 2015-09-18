@@ -25,7 +25,7 @@ module.exports = function(app) {
     // Use morgan for HTTP request logging
     app.use(morgan('combined'));
 
-    // Home Page with Click to Call 
+    // Home Page with Click to Call
     app.get('/', function(request, response) {
         response.render('index');
     });
@@ -35,8 +35,8 @@ module.exports = function(app) {
         // This should be the publicly accessible URL for your application
         // Here, we just use the host for the application making the request,
         // but you can hard code it or use something different if need be
-        var url = 'http://' + request.headers.host + '/outbound';
-        
+        var url = 'https://afternoon-harbor-5614.herokuapp.com' + '/outbound';
+
         // Place an outbound call to the user, using the TwiML instructions
         // from the /outbound route
         client.makeCall({
@@ -63,5 +63,3 @@ module.exports = function(app) {
         response.render('outbound');
     });
 };
-
-
